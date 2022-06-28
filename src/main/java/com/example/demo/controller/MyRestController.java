@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Employee;
-import com.example.demo.service.EmployeeMongoService;
 import com.example.demo.service.EmployeeService;
 
 @RestController
@@ -21,10 +20,7 @@ import com.example.demo.service.EmployeeService;
 public class MyRestController {
 
 	@Autowired
-	public EmployeeService service2;
-
-	@Autowired
-	public EmployeeMongoService service;
+	public EmployeeService service;
 
 	@GetMapping("/employees")
 	public List<Employee> getEmployees() {

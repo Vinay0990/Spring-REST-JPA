@@ -3,19 +3,17 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Employee;
-import com.example.demo.repo.EmployeeMongoRepository;
+import com.example.demo.repo.EmployeeRepository;
 
 @Service
-@Primary
-public class EmployeeMongoService implements EmployeeService {
+public class EmployeeJPAService implements EmployeeService {
 
-	private EmployeeMongoRepository repo;
+	private EmployeeRepository repo;
 
-	public EmployeeMongoService(EmployeeMongoRepository repo) {
+	public EmployeeJPAService(EmployeeRepository repo) {
 		super();
 		this.repo = repo;
 		this.repo.deleteAll();

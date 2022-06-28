@@ -2,60 +2,20 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Employee;
-import com.example.demo.repo.EmployeeRepository;
 
-@Service
-public class EmployeeService {
+public interface EmployeeService {
 
-	private EmployeeRepository repo;
+	public List<Employee> getAllEmployees();
 
-	public EmployeeService(EmployeeRepository repo) {
-		super();
-		this.repo = repo;
-		getDummyData().forEach(t -> {
-			this.repo.save(t);
-		});
-	}
+	public Employee saveEmployee(Employee e);
 
-	public List<Employee> getAllEmployees() {
-		List<Employee> emps = this.repo.findAll();
-		return emps;
-	}
+	public Employee updateEmployee(String id, Employee e);
 
-	public Employee saveEmployee(Employee e) {
-		if (e == null) {
-			return null;
-		}
+	public Employee deleteEmployee(String id);
 
-		return this.repo.save(e);
-	}
-
-	public Employee updateEmployee(String id, Employee e) {
-
-		Optional<Employee> e1 = this.repo.findById(id);
-
-		if (e1.isPresent()) {
-			e1.get().setName(e.getName());
-			e1.get().setDept(e.getDept());
-			e1.get().setSalary(e.getSalary());
-			return this.repo.save(e1.get());
-		} else {
-			return null;
-		}
-	}
-
-	public Employee deleteEmployee(String id) {
-		Optional<Employee> e = this.repo.findById(id);
-		this.repo.delete(e.get());
-		return e.get();
-	}
-
-	private List<Employee> getDummyData() {
+	default List<Employee> getDummyData() {
 		List<Employee> emps = new ArrayList<Employee>();
 
 		emps.add(new Employee("1", "Vinay", "CS", 10000));
