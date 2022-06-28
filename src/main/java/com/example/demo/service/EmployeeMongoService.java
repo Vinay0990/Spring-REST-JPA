@@ -7,14 +7,14 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Employee;
-import com.example.demo.repo.EmployeeRepository;
+import com.example.demo.repo.EmployeeMongoRepository;
 
 @Service
-public class EmployeeService {
+public class EmployeeMongoService {
 
-	private EmployeeRepository repo;
+	private EmployeeMongoRepository repo;
 
-	public EmployeeService(EmployeeRepository repo) {
+	public EmployeeMongoService(EmployeeMongoRepository repo) {
 		super();
 		this.repo = repo;
 		getDummyData().forEach(t -> {

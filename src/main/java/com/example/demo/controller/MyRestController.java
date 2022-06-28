@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Employee;
+import com.example.demo.service.EmployeeMongoService;
 import com.example.demo.service.EmployeeService;
 
 @RestController
@@ -20,7 +21,10 @@ import com.example.demo.service.EmployeeService;
 public class MyRestController {
 
 	@Autowired
-	public EmployeeService service;
+	public EmployeeService service2;
+
+	@Autowired
+	public EmployeeMongoService service;
 
 	@GetMapping("/employees")
 	public List<Employee> getEmployees() {
@@ -33,12 +37,12 @@ public class MyRestController {
 	}
 
 	@PutMapping("/employees/{id}")
-	public Employee updateEmployee(@PathVariable("id") int id, @RequestBody Employee e) {
+	public Employee updateEmployee(@PathVariable("id") String id, @RequestBody Employee e) {
 		return this.service.updateEmployee(id, e);
 	}
-	
+
 	@DeleteMapping("/employees/{id}")
-	public Employee deleteEmployee(@PathVariable("id") int id) {
+	public Employee deleteEmployee(@PathVariable("id") String id) {
 		return this.service.deleteEmployee(id);
 	}
 }

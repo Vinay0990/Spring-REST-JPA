@@ -1,8 +1,6 @@
 package com.example.demo.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,12 +13,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "employees")
-public class Employee {
-
+@Document("employees")
+public class EmployeeMongo {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 	private String name;
 	private String dept;
